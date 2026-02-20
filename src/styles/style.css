@@ -53,6 +53,10 @@ body {
 	font-family: sans-serif;
 }
 
+#search-btn:hover {
+	background: #0a0f1c;
+}
+
 #search-field {
 	background-color: transparent;
 	color: var(--text-primary);
