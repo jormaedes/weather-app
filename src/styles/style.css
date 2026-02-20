@@ -1,0 +1,15 @@
+:root {
+	--bg-main: radial-gradient(circle at center, #151c25, #0d1117);
+
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--bg-main);
+	height: 100vh;
+}
