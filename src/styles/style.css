@@ -1,6 +1,8 @@
 :root {
-	--bg-main: radial-gradient(circle at center, #151c25, #0d1117);
-
+	--bg-main: radial-gradient(circle at center, #151c25, #0a0f1c);
+	--bg-weather-screen: #0d1117;
+	
+	--text-primary: #ffffff;
 }
 
 * {
@@ -12,4 +14,61 @@
 body {
 	background: var(--bg-main);
 	height: 100vh;
+	color: var(--text-primary);
+	display: flex;
+	flex-direction: column;
+	font-family: sans-serif;
+}
+
+#main-content {
+	flex: 1;
+}
+
+#main-container-search {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
+	align-items: center;
+}
+
+#container-search {
+	border: 1px solid #0ea5e9;
+	padding: 10px 20px;
+	border-radius: 10px;
+	display: flex;
+	gap: 16px;
+}
+
+#search-btn {
+	padding: 8px 16px;
+	background: #0ea5e9;
+	border: none;
+	color: var(--text-primary);
+	font-weight: 600;
+	border-radius: 8px;
+	font-size: 16px;
+	cursor: pointer;
+	font-family: sans-serif;
+}
+
+#search-field {
+	background-color: transparent;
+	color: var(--text-primary);
+	border: none;
+	height: 40px;
+	width: 250px;
+	font-size: 16px;
+	font-family: sans-serif;
+}
+
+footer {
+	text-align: center;
+	padding: 20px;
+}
+
+footer a {
+	text-decoration: none;
+	color: #0ea5e9;
 }
