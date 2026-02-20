@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+	<title>To-do list app</title>
+</head>
+
+<body>
+	<aside id="sidebar">
+		<section id="sidebar-container">
+			<section id="main-sidebar-content">
+				<h1 id="logo">To-Do List</h1>
+
+				<section id="general-section">
+					<h2 class="section-title">General</h2>
+					<!-- JS vai preencher aqui -->
+				</section>
+
+				<section id="projects-section">
+					<h2 class="section-title">Projects</h2>
+					<div class="project-list">
+						<!-- JS vai preencher aqui -->
+					</div>
+					<button id="add-project-btn">+ Add Project</button>
+				</section>
+			</section>
+
+			<section id="settings-section">
+				<button id="toggle-theme-btn">
+					<i id="icon-toggle-theme" class="ri-moon-fill"></i>
+					Toggle Theme
+				</button>
+				<button id="about-btn">
+					<i class="ri-information-fill"></i>
+					About
+				</button>
+			</section>
+		</section>
+	</aside>
+
+	<main id="main-content">
+		<section id="main-content-header">
+			<h2 id="main-title">Inbox</h2>
+			<button id="add-task-btn">+ Add Task</button>
+		</section>
+		<section id="tasks-container">
+			<!-- JS vai preencher aqui -->
+		</section>
+	</main>
+
+	<!-- Dialogs -->
+	<dialog id="about-dialog">
+		<form method="dialog" class="about-dialog-container">
+			<div id="copyright">
+				<p>Built by <a href="https://github.com/jormaedes" target="_blank">Jormaedes</a> as part of
+					<a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a>
+				</p>
+				<p>© 2026 all right reserved.</p>
+			</div>
+			<button id="close-info-btn">close</button>
+		</form>
+	</dialog>
+
+	<dialog id="add-project-dialog">
+		<form method="dialog">
+			<input type="text" id="name-project-input" placeholder="Project name...">
+			<div class="buttons-container">
+				<button type="button" id="cancel-add-project-btn">Cancel</button>
+				<button type="submit" id="confirm-add-project-btn">Add</button>
+			</div>
+		</form>
+	</dialog>
+
+	<dialog id="add-task-dialog">
+		<form method="dialog">
+			<span>Add Task</span>
+			<div class="property-container">
+				<label for="title-input">Title</label>
+				<input type="text" id="title-input" required>
+			</div>
+			<div class="property-container">
+				<label for="description-input">Description</label>
+				<input type="text" id="description-input">
+			</div>
+			<div class="date-container">
+				<label for="due-date-input">Due Date</label>
+				<input type="date" id="due-date-input" required>
+			</div>
+			<div class="priority-container">
+				<label for="priority-input">Priority</label>
+				<select name="priority" id="priority-input" data-priority="low">
+					<option value="low">Low</option>
+					<option value="medium">Medium</option>
+					<option value="high">High</option>
+				</select>
+			</div>
+			<div class="buttons-container">
+				<button type="button" id="cancel-add-task-btn">Cancel</button>
+				<button type="submit" id="confirm-add-task-btn">Add</button>
+			</div>
+		</form>
+	</dialog>
+
+	<dialog id="edit-task-dialog">
+		<form method="dialog">
+			<span>Edit Task</span>
+			<div class="property-container">
+				<label for="edit-title-input">Title</label>
+				<input type="text" id="edit-title-input" required>
+			</div>
+			<div class="property-container">
+				<label for="edit-description-input">Description</label>
+				<input type="text" id="edit-description-input">
+			</div>
+			<div class="date-container">
+				<label for="edit-due-date-input">Due Date</label>
+				<input type="date" id="edit-due-date-input" required>
+			</div>
+			<div class="priority-container">
+				<label for="edit-priority-input">Priority</label>
+				<select name="priority" id="edit-priority-input" data-priority="low">
+					<option value="low">Low</option>
+					<option value="medium">Medium</option>
+					<option value="high">High</option>
+				</select>
+			</div>
+			<div class="buttons-container">
+				<button type="button" id="cancel-edit-task-btn">Cancel</button>
+				<button type="submit" id="confirm-edit-task-btn">Save</button>
+			</div>
+		</form>
+	</dialog>
+</body>
+
+</html>
