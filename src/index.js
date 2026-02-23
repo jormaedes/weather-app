@@ -11,7 +11,6 @@ class App {
 
 	async getLocalData(local) {
 		this.response = await this.weatherAPI.getDates(local);
-		console.log(this.response);
 		return (this.response);
 	}
 }
