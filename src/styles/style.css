@@ -114,6 +114,10 @@ body {
 	margin: 0 auto;
 }
 
+.icon-temp {
+	width: 100px;
+}
+
 /* ─── LEFT SIDE ─── */
 .left-side {
 	display: flex;
