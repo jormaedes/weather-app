@@ -57,10 +57,13 @@ class UI {
 
 	setEvents() {
 		this.searchBtn1.addEventListener('click', async () => {
-			const local = this.searchField.value;
+			const local = this.searchField.value.trim();
 			const response = await app.getLocalData(local.toLowerCase());
 			if (!response)
+			{
+				alert(`${local} not found!`)
 				return;
+			}
 			this.screenSearch.style.display = 'none';
 			this.screenWeatger.style.display = 'block';
 			console.log(response);
