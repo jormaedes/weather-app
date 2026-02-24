@@ -81,8 +81,7 @@ class UI {
 		this.searchBtn1.addEventListener('click', async () => {
 			const local = this.searchField.value.trim();
 			const response = await app.getLocalData(local.toLowerCase());
-			if (!response)
-			{
+			if (!response) {
 				alert(`${local} not found!`)
 				return;
 			}
@@ -96,8 +95,7 @@ class UI {
 			const unit = document.querySelector('.active');
 			const local = this.searchField2.value.trim();
 			const response = await app.getLocalData(local.toLowerCase());
-			if (!response)
-			{
+			if (!response) {
 				alert(`${local} not found!`)
 				return;
 			}
@@ -108,12 +106,12 @@ class UI {
 	render(response, unit) {
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
-		this.currentTemp.textContent = `${(unit == 'C')?	this._getClesuisTemp(response.currentConditions.temp):
-															response.currentConditions.temp}°`;
+		this.currentTemp.textContent = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
+			response.currentConditions.temp}°`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
-		this.feelslike.textContent = `${(unit == 'C')? 	this._getClesuisTemp(response.currentConditions.feelslike): 
-														response.currentConditions.feelslike
-		}°`;
+		this.feelslike.textContent = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.feelslike) :
+			response.currentConditions.feelslike
+			}°`;
 		this.humidity.textContent = `${response.currentConditions.humidity}%`;
 		this.uv.textContent = response.currentConditions.uvindex;
 		this.wind.textContent = response.currentConditions.windspeed;
@@ -144,8 +142,8 @@ class UI {
 			hourSlotEl[i].innerHTML = '';
 			hourSlotEl[i].innerHTML = ` <span class="hour-label">${h[i]}</span>
 				<img src="${this.urlIcon}${hourSlot[i].icon}.svg" class="hour-icon">
-				<span class="hour-temp">${(unit == 'C')? 	this._getClesuisTemp(hourSlot[i].temp):
-															hourSlot[i].temp}°</span>
+				<span class="hour-temp">${(unit == 'C') ? this._getClesuisTemp(hourSlot[i].temp) :
+					hourSlot[i].temp.toFixed(0)}°</span>
 			`;
 		}
 	}
@@ -159,11 +157,11 @@ class UI {
 			let date = new Date(days[i].datetime);
 			dayRow[i].innerHTML = `<span class="day-name">${(i == 0) ? "Today" : weekDays[date.getDay()]}</span>
 								<img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon">
-								<span class="day-temps"><span class="max">${(unit == 'C')? this._getClesuisTemp(days[i].tempmax):
-																							days[i].tempmax
-								}°</span> <span class="min">/${(unit == 'C')? 	this._getClesuisTemp(days[i].tempmin):
-																				days[i].tempmin
-								}°</span></span>
+								<span class="day-temps"><span class="max">${(unit == 'C') ? this._getClesuisTemp(days[i].tempmax) :
+					days[i].tempmax.toFixed(0)
+				}°</span> <span class="min">/${(unit == 'C') ? this._getClesuisTemp(days[i].tempmin) :
+					days[i].tempmin.toFixed(0)
+				}°</span></span>
 								`;
 		}
 	}
