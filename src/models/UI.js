@@ -89,10 +89,11 @@ class UI {
 			this.screenSearch.style.display = 'none';
 			this.screenWeatger.style.display = 'block';
 			console.log(response);
-			this.render(response);
+			this.render(response, "C");
 		})
 
 		this.searchBtn2.addEventListener('click', async () => {
+			const unit = document.querySelector('.active');
 			const local = this.searchField2.value.trim();
 			const response = await app.getLocalData(local.toLowerCase());
 			if (!response)
@@ -100,25 +101,27 @@ class UI {
 				alert(`${local} not found!`)
 				return;
 			}
-			this.render(response);
+			this.render(response, unit.textContent[1]);
 		})
 	}
 
-	render(response) {
+	render(response, unit) {
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
-		this.currentTemp.textContent = `${this._getClesuisTemp(response.currentConditions.temp)}°`;
+		this.currentTemp.textContent = `${(unit == 'C')?	this._getClesuisTemp(response.currentConditions.temp):
+															response.currentConditions.temp}°`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
-		this.feelslike.textContent = `${this._getClesuisTemp(response.currentConditions.feelslike)
-			}°`;
+		this.feelslike.textContent = `${(unit == 'C')? 	this._getClesuisTemp(response.currentConditions.feelslike): 
+														response.currentConditions.feelslike
+		}°`;
 		this.humidity.textContent = `${response.currentConditions.humidity}%`;
 		this.uv.textContent = response.currentConditions.uvindex;
 		this.wind.textContent = response.currentConditions.windspeed;
-		this._renderHouerSlot(response);
-		this._renderForecast(response);
+		this._renderHouerSlot(response, unit);
+		this._renderForecast(response, unit);
 	}
 
-	_renderHouerSlot(response) {
+	_renderHouerSlot(response, unit) {
 		const hours = response.days[0].hours;
 		const hourSlot = [hours[6], hours[9], hours[12], hours[15], hours[18], hours[21]];
 		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
@@ -141,12 +144,13 @@ class UI {
 			hourSlotEl[i].innerHTML = '';
 			hourSlotEl[i].innerHTML = ` <span class="hour-label">${h[i]}</span>
 				<img src="${this.urlIcon}${hourSlot[i].icon}.svg" class="hour-icon">
-				<span class="hour-temp">${this._getClesuisTemp(hourSlot[i].temp)}°</span>
+				<span class="hour-temp">${(unit == 'C')? 	this._getClesuisTemp(hourSlot[i].temp):
+															hourSlot[i].temp}°</span>
 			`;
 		}
 	}
 
-	_renderForecast(response) {
+	_renderForecast(response, unit) {
 		const days = response.days;
 		const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 		const dayRow = [...document.querySelectorAll('.day-row')];
@@ -155,7 +159,11 @@ class UI {
 			let date = new Date(days[i].datetime);
 			dayRow[i].innerHTML = `<span class="day-name">${(i == 0) ? "Today" : weekDays[date.getDay()]}</span>
 								<img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon">
-								<span class="day-temps"><span class="max">${this._getClesuisTemp(days[i].tempmax)}°</span> <span class="min">/${this._getClesuisTemp(days[i].tempmin)}°</span></span>
+								<span class="day-temps"><span class="max">${(unit == 'C')? this._getClesuisTemp(days[i].tempmax):
+																							days[i].tempmax
+								}°</span> <span class="min">/${(unit == 'C')? 	this._getClesuisTemp(days[i].tempmin):
+																				days[i].tempmin
+								}°</span></span>
 								`;
 		}
 	}
