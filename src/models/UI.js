@@ -81,6 +81,22 @@ class UI{
 		this.humidity.textContent = `${response.currentConditions.humidity}%`;
 		this.uv.textContent = response.currentConditions.uvindex;
 		this.wind.textContent = response.currentConditions.windspeed;
+		this._renderHouerSlot(response);
+	}
+
+	_renderHouerSlot(response){
+		const hours = response.days[0].hours;
+		const hourSlot = [hours[6], hours[9], hours[12], hours[15], hours[18], hours[21]];
+		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
+		const h = ['6:00 AM', '9:00 AM', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM']
+		console.log(hourSlot);
+		for(let i = 0; i < hourSlot.length; i++) {
+			hourSlotEl[i].innerHTML = '';
+			hourSlotEl[i].innerHTML = ` <span class="hour-label">${h[i]}</span>
+				<img src="${this.urlIcon}${hourSlot[i].icon}.svg" class="hour-icon">
+				<span class="hour-temp">${this._getClesuisTemp(hourSlot[i].temp)}°</span>
+			`;
+		}
 	}
 }
 
