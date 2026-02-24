@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather App</title>
+<script defer src="main.js"></script></head>
+
+<body>
+	<!-- ══════════════ SEARCH SCREEN ══════════════ -->
+	<main id="screen-search">
+        <div id="container-search">
+            <input type="text" id="search-field" placeholder="Search your city...">
+            <button id="search-btn">Search</button>
+        </div>
+        <p class="search-hint">Enter a city name to get started</p>
+    </main>
+
+	<!-- ══════════════ WEATHER SCREEN ══════════════ -->
+	<main id="screen-weather">
+		<div id="weather-layout">
+
+			<!-- LEFT -->
+			<div class="left-side">
+				<!-- Top bar -->
+				<div class="weather-topbar">
+					<div class="city-info">
+						<h1 id="city-name">Luanda</h1>
+						<p id="description">description</p>
+					</div>
+					<div class="topbar-controls">
+						<div class="search-inline">
+							<input type="text" id="search-field-2" placeholder="Search city...">
+							<button id="search-btn-2">Search</button>
+						</div>
+						<!-- C / F TOGGLE -->
+						<div class="unit-toggle">
+							<button id="btn-celsius" class="active">°C</button>
+							<button id="btn-fahrenheit">°F</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Temp hero -->
+				<div class="temp-hero">
+					<div class="temp-value" id="current-temp">31<sup>°</sup></div>
+					<!-- Animated temp -->
+					<img src="#" class="icon-temp" id="icon-current-temp">
+				</div>
+
+				<!-- Hourly forecast -->
+				<div class="card">
+					<p class="card-label">Today's Forecast</p>
+					<div class="hourly-grid" id="hourly-grid">
+						<!-- populated by JS -->
+						<div class="hour-slot"></div>
+						<div class="hour-slot"></div>
+						<div class="hour-slot"></div>
+						<div class="hour-slot"></div>
+						<div class="hour-slot"></div>
+						<div class="hour-slot"></div>
+					</div>
+				</div>
+
+				<!-- Air conditions / stats -->
+				<div class="card">
+					<p class="card-label">Air Conditions</p>
+					<div class="stats-grid">
+						<div class="stat-item">
+							<span class="stat-label"><span>🌡️</span> Feels Like</span>
+							<span class="stat-value" id="feelslike">30°</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label"><span>💧</span>Humidity</span>
+							<span class="stat-value" id="humidity-stat">0%</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label"><span>💨</span> Wind Speed</span>
+							<span class="stat-value" id="wind-stat">12 km/h</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label"><span>🔆</span> UV Index</span>
+							<span class="stat-value" id="uv-stat">3</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- RIGHT — 7-Day Forecast -->
+			<div class="right-side">
+				<p class="card-label">7-Day Forecast</p>
+				<div class="forecast-days" id="forecast-days">
+					<!-- populated by JS -->
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+					<div class="day-row"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>Built by <a href="https://github.com/jormaedes" target="_blank">Jormaedes</a> as part of
+			<a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a>
+		</p>
+		<p>© 2026 all right reserved.</p>
+	</footer>
+</body>
+
+</html>
