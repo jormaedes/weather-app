@@ -13,8 +13,20 @@ class UI{
 		this.btnCelsius = document.getElementById('btn-celsius');
 		this.btnFahrenheit = document.getElementById('btn-fahrenheit');
 		this.iconCurrentTemp = document.getElementById('icon-current-temp');
+		this.city = document.getElementById('city-name');
+		this.desc = document.getElementById('description');
+		this.currentTemp = document.getElementById('current-temp');
 	}
 
+	_getClesuisTemp(tmp){
+		const f = parseFloat(tmp);
+		return ((f - 32) * (5 / 9)).toFixed(0);
+	}
+
+	_getFahrenheitTemp(tmp){
+		const c = parseInt(tmp);
+		return ((c * 1.8) + 32).toFixed(0);
+	}
 
 	init (){
 		this.setUnitToggle();
@@ -27,6 +39,7 @@ class UI{
 				return ;
 			this.btnFahrenheit.classList.remove('active');
 			this.btnCelsius.classList.add('active')
+			this.currentTemp.textContent = this._getClesuisTemp(this.currentTemp.textContent);
 		})
 
 		this.btnFahrenheit.addEventListener('click', (e)=>{
@@ -34,6 +47,7 @@ class UI{
 				return ;
 			this.btnCelsius.classList.remove('active');
 			this.btnFahrenheit.classList.add('active')
+			this.currentTemp.textContent = this._getFahrenheitTemp(this.currentTemp.textContent);
 		})
 	}
 
@@ -51,6 +65,9 @@ class UI{
 	}
 
 	render(response) {
+		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+		this.desc.textContent = response.description;
+		this.currentTemp.textContent = this._getClesuisTemp(response.currentConditions.temp);
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
 	}
 }
