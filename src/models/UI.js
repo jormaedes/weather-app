@@ -118,7 +118,7 @@ class UI {
 
 	render(response, unit) {
 		console.log(response);
-		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+		this.city.textContent = response.resolvedAddress;
 		this.desc.textContent = response.description;
 		this.currentTemp.innerHTML = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
 			response.currentConditions.temp}<sup>${(unit == 'C') ? "°C" : "°F"}</sup>`;
