@@ -125,6 +125,9 @@ class UI {
 		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
 		const h = ['6:00 AM', '9:00 AM', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM']
 		const hs1 = new Date();
+		const current = document.querySelector('.current');
+		if (current)
+			current.classList.remove('current');
 		if (hs1.getHours() >= 6 && hs1.getHours() <= 8)
 			hourSlotEl[0].classList.add('current');
 		else if (hs1.getHours() >= 9 && hs1.getHours() <= 11)
