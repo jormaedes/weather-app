@@ -120,7 +120,7 @@ class UI{
 			dayRow[i].innerHTML = '';
 			let date = new Date(days[i].datetime);
 			dayRow[i].innerHTML = `<span class="day-name">${(i == 0)? "Today": weekDays[date.getDay()]}</span>
-								<div class="day-condition"><img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon"></div>
+								<img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon">
 								<span class="day-temps"><span class="max">${this._getClesuisTemp(days[i].tempmax)}°</span> <span class="min">/${this._getClesuisTemp(days[i].tempmin)}°</span></span>
 								`;
 		}

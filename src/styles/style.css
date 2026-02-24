@@ -366,16 +366,8 @@ body {
 	font-weight: 500;
 }
 
-.day-condition {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 14px;
-	color: var(--text-secondary);
-}
-
-.day-condition .cond-icon {
-	height: 18px;
+.cond-icon {
+	width: 40px;
 }
 
 .day-temps {
