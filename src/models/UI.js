@@ -91,6 +91,17 @@ class UI {
 			console.log(response);
 			this.render(response);
 		})
+
+		this.searchBtn2.addEventListener('click', async () => {
+			const local = this.searchField2.value.trim();
+			const response = await app.getLocalData(local.toLowerCase());
+			if (!response)
+			{
+				alert(`${local} not found!`)
+				return;
+			}
+			this.render(response);
+		})
 	}
 
 	render(response) {
