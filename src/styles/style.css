@@ -99,7 +99,7 @@ body {
 
 /* ─── WEATHER SCREEN ─── */
 #screen-weather {
-	display: none;
+	display: block;
 	/* JS toggle */
 	flex: 1;
 	background: var(--bg-weather);

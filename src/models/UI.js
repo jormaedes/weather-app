@@ -16,6 +16,12 @@ class UI{
 		this.city = document.getElementById('city-name');
 		this.desc = document.getElementById('description');
 		this.currentTemp = document.getElementById('current-temp');
+		this.humidity = document.getElementById("humidity-stat");
+		this.uv = document.getElementById("uv-stat");
+		this.wind = document.getElementById("wind-stat");
+		this.feelslike = document.getElementById("feelslike");
+
+		
 	}
 
 	_getClesuisTemp(tmp){
@@ -69,6 +75,12 @@ class UI{
 		this.desc.textContent = response.description;
 		this.currentTemp.textContent = this._getClesuisTemp(response.currentConditions.temp);
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
+		this.feelslike.textContent = `${
+			this._getClesuisTemp(response.currentConditions.feelslike)
+		}°`;
+		this.humidity.textContent = `${response.currentConditions.humidity}%`;
+		this.uv.textContent = response.currentConditions.uvindex;
+		this.wind.textContent = response.currentConditions.windspeed;
 	}
 }
 
