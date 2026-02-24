@@ -1,8 +1,7 @@
 import app from "..";
 
-class UI{
-	constructor()
-	{
+class UI {
+	constructor() {
 		this.urlIcon = "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/58c79610addf3d4d91471abbb95b05e96fb43019/SVG/2nd%20Set%20-%20Color/";
 		this.searchBtn1 = document.getElementById('search-btn');
 		this.screenSearch = document.getElementById('screen-search');
@@ -20,36 +19,36 @@ class UI{
 		this.uv = document.getElementById("uv-stat");
 		this.wind = document.getElementById("wind-stat");
 		this.feelslike = document.getElementById("feelslike");
-		
+
 	}
 
-	_getClesuisTemp(tmp){
+	_getClesuisTemp(tmp) {
 		const f = parseFloat(tmp);
 		return ((f - 32) * (5 / 9)).toFixed(0);
 	}
 
-	_getFahrenheitTemp(tmp){
+	_getFahrenheitTemp(tmp) {
 		const c = parseInt(tmp);
 		return ((c * 1.8) + 32).toFixed(0);
 	}
 
-	init (){
+	init() {
 		this.setUnitToggle();
 		this.setEvents();
 	}
 
-	setUnitToggle(){
-		this.btnCelsius.addEventListener('click', (e)=>{
+	setUnitToggle() {
+		this.btnCelsius.addEventListener('click', (e) => {
 			if (this.btnCelsius.classList.contains('active'))
-				return ;
+				return;
 			this.btnFahrenheit.classList.remove('active');
 			this.btnCelsius.classList.add('active')
 			this.currentTemp.textContent = `${this._getClesuisTemp(this.currentTemp.textContent)}°`;
 		})
 
-		this.btnFahrenheit.addEventListener('click', (e)=>{
+		this.btnFahrenheit.addEventListener('click', (e) => {
 			if (this.btnFahrenheit.classList.contains('active'))
-				return ;
+				return;
 			this.btnCelsius.classList.remove('active');
 			this.btnFahrenheit.classList.add('active')
 			this.currentTemp.textContent = `${this._getFahrenheitTemp(this.currentTemp.textContent)}°`;
@@ -57,11 +56,11 @@ class UI{
 	}
 
 	setEvents() {
-		this.searchBtn1.addEventListener('click', async ()=> {
+		this.searchBtn1.addEventListener('click', async () => {
 			const local = this.searchField.value;
 			const response = await app.getLocalData(local.toLowerCase());
 			if (!response)
-				return ;
+				return;
 			this.screenSearch.style.display = 'none';
 			this.screenWeatger.style.display = 'block';
 			console.log(response);
@@ -74,9 +73,8 @@ class UI{
 		this.desc.textContent = response.description;
 		this.currentTemp.textContent = `${this._getClesuisTemp(response.currentConditions.temp)}°`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
-		this.feelslike.textContent = `${
-			this._getClesuisTemp(response.currentConditions.feelslike)
-		}°`;
+		this.feelslike.textContent = `${this._getClesuisTemp(response.currentConditions.feelslike)
+			}°`;
 		this.humidity.textContent = `${response.currentConditions.humidity}%`;
 		this.uv.textContent = response.currentConditions.uvindex;
 		this.wind.textContent = response.currentConditions.windspeed;
@@ -84,7 +82,7 @@ class UI{
 		this._renderForecast(response);
 	}
 
-	_renderHouerSlot(response){
+	_renderHouerSlot(response) {
 		const hours = response.days[0].hours;
 		const hourSlot = [hours[6], hours[9], hours[12], hours[15], hours[18], hours[21]];
 		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
@@ -103,7 +101,7 @@ class UI{
 		else
 			hourSlotEl[5].classList.add('current');
 		console.log(hourSlot);
-		for(let i = 0; i < hourSlot.length; i++) {
+		for (let i = 0; i < hourSlot.length; i++) {
 			hourSlotEl[i].innerHTML = '';
 			hourSlotEl[i].innerHTML = ` <span class="hour-label">${h[i]}</span>
 				<img src="${this.urlIcon}${hourSlot[i].icon}.svg" class="hour-icon">
@@ -112,19 +110,19 @@ class UI{
 		}
 	}
 
-	_renderForecast(response){
+	_renderForecast(response) {
 		const days = response.days;
-		const weekDays = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+		const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 		const dayRow = [...document.querySelectorAll('.day-row')];
-		for (let i = 0; i < 7; i++){
+		for (let i = 0; i < 7; i++) {
 			dayRow[i].innerHTML = '';
 			let date = new Date(days[i].datetime);
-			dayRow[i].innerHTML = `<span class="day-name">${(i == 0)? "Today": weekDays[date.getDay()]}</span>
+			dayRow[i].innerHTML = `<span class="day-name">${(i == 0) ? "Today" : weekDays[date.getDay()]}</span>
 								<img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon">
 								<span class="day-temps"><span class="max">${this._getClesuisTemp(days[i].tempmax)}°</span> <span class="min">/${this._getClesuisTemp(days[i].tempmin)}°</span></span>
 								`;
 		}
-		}
+	}
 }
 
 export default new UI();
