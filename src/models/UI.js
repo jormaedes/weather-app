@@ -87,7 +87,6 @@ class UI {
 			}
 			this.screenSearch.style.display = 'none';
 			this.screenWeatger.style.display = 'block';
-			console.log(response);
 			this.render(response, "C");
 		});
 
@@ -118,6 +117,7 @@ class UI {
 	}
 
 	render(response, unit) {
+		console.log(response);
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
 		this.currentTemp.innerHTML = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
