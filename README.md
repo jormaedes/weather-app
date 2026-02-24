@@ -128,9 +128,3 @@ this._key = "YOUR_API_KEY_HERE";
 **Jormaedes**
 - GitHub: [@jormaedes](https://github.com/jormaedes)
 - Project: [The Odin Project — JavaScript Course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript)
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](./LICENSE).
