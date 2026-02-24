@@ -87,7 +87,7 @@ class UI{
 	_renderHouerSlot(response){
 		const hours = response.days[0].hours;
 		const hourSlot = [hours[6], hours[9], hours[12], hours[15], hours[18], hours[21]];
-		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
+		const hourSlotEl = [...document.querySelectorAll('.hour-slotr')];
 		const h = ['6:00 AM', '9:00 AM', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM']
 		console.log(hourSlot);
 		for(let i = 0; i < hourSlot.length; i++) {
