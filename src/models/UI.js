@@ -43,7 +43,7 @@ class UI {
 				return;
 			this.btnFahrenheit.classList.remove('active');
 			this.btnCelsius.classList.add('active')
-			this.currentTemp.textContent = `${this._getClesuisTemp(this.currentTemp.textContent)}°`;
+			this.currentTemp.innerHTML = `${this._getClesuisTemp(this.currentTemp.textContent)}<sup>°C</sup>`;
 			const mins = [...document.querySelectorAll('.min')];
 			const maxs = [...document.querySelectorAll('.max')];
 			const hoursTemps = [...document.querySelectorAll('.hour-temp')];
@@ -62,7 +62,7 @@ class UI {
 				return;
 			this.btnCelsius.classList.remove('active');
 			this.btnFahrenheit.classList.add('active')
-			this.currentTemp.textContent = `${this._getFahrenheitTemp(this.currentTemp.textContent)}°`;
+			this.currentTemp.innerHTML = `${this._getFahrenheitTemp(this.currentTemp.textContent)}<sup>°F</sup>`;
 			const mins = [...document.querySelectorAll('.min')];
 			const maxs = [...document.querySelectorAll('.max')];
 			const hoursTemps = [...document.querySelectorAll('.hour-temp')];
@@ -99,15 +99,15 @@ class UI {
 				alert(`${local} not found!`)
 				return;
 			}
-			this.render(response, unit.textContent[1]);
+			this.render(response, unit.textContent[2]);
 		})
 	}
 
 	render(response, unit) {
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
-		this.currentTemp.textContent = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
-			response.currentConditions.temp}°`;
+		this.currentTemp.innerHTML = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
+			response.currentConditions.temp}<sup>${(unit == 'C') ? "°C": "°F"}</sup>`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
 		this.feelslike.textContent = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.feelslike) :
 			response.currentConditions.feelslike
@@ -146,7 +146,7 @@ class UI {
 			hourSlotEl[i].innerHTML = ` <span class="hour-label">${h[i]}</span>
 				<img src="${this.urlIcon}${hourSlot[i].icon}.svg" class="hour-icon">
 				<span class="hour-temp">${(unit == 'C') ? this._getClesuisTemp(hourSlot[i].temp) :
-					hourSlot[i].temp.toFixed(0)}°</span>
+					hourSlot[i].temp.toFixed(0)}</span>
 			`;
 		}
 	}
