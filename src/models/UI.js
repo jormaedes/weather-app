@@ -89,7 +89,7 @@ class UI {
 			this.screenWeatger.style.display = 'block';
 			console.log(response);
 			this.render(response, "C");
-		})
+		});
 
 		this.searchBtn2.addEventListener('click', async () => {
 			const unit = document.querySelector('.active');
@@ -99,15 +99,29 @@ class UI {
 				alert(`${local} not found!`)
 				return;
 			}
-			this.render(response, unit.textContent[2]);
-		})
+			this.render(response, unit.textContent[unit.textContent.length - 1]);
+		});
+
+		this.searchField.addEventListener('keydown', async (e) => {
+			if (e.key == 'Enter') {
+				e.preventDefault();
+				this.searchBtn1.click();
+			}
+		});
+
+		this.searchField2.addEventListener('keydown', async (e) => {
+			if (e.key == 'Enter') {
+				e.preventDefault();
+				this.searchBtn2.click();
+			}
+		});
 	}
 
 	render(response, unit) {
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
 		this.currentTemp.innerHTML = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.temp) :
-			response.currentConditions.temp}<sup>${(unit == 'C') ? "°C": "°F"}</sup>`;
+			response.currentConditions.temp}<sup>${(unit == 'C') ? "°C" : "°F"}</sup>`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
 		this.feelslike.textContent = `${(unit == 'C') ? this._getClesuisTemp(response.currentConditions.feelslike) :
 			response.currentConditions.feelslike
