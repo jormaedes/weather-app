@@ -20,7 +20,6 @@ class UI{
 		this.uv = document.getElementById("uv-stat");
 		this.wind = document.getElementById("wind-stat");
 		this.feelslike = document.getElementById("feelslike");
-
 		
 	}
 
@@ -82,6 +81,7 @@ class UI{
 		this.uv.textContent = response.currentConditions.uvindex;
 		this.wind.textContent = response.currentConditions.windspeed;
 		this._renderHouerSlot(response);
+		this._renderForecast(response);
 	}
 
 	_renderHouerSlot(response){
@@ -111,6 +111,20 @@ class UI{
 			`;
 		}
 	}
+
+	_renderForecast(response){
+		const days = response.days;
+		const weekDays = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+		const dayRow = [...document.querySelectorAll('.day-row')];
+		for (let i = 0; i < 7; i++){
+			dayRow[i].innerHTML = '';
+			let date = new Date(days[i].datetime);
+			dayRow[i].innerHTML = `<span class="day-name">${(i == 0)? "Today": weekDays[date.getDay()]}</span>
+								<div class="day-condition"><img src="${this.urlIcon}${days[i].icon}.svg" class="cond-icon"></div>
+								<span class="day-temps"><span class="max">${this._getClesuisTemp(days[i].tempmax)}°</span> <span class="min">/${this._getClesuisTemp(days[i].tempmin)}°</span></span>
+								`;
+		}
+		}
 }
 
 export default new UI();
