@@ -128,7 +128,7 @@ class UI {
 			}°`;
 		this.humidity.textContent = `${response.currentConditions.humidity}%`;
 		this.uv.textContent = response.currentConditions.uvindex;
-		this.wind.textContent = response.currentConditions.windspeed;
+		this.wind.textContent = response.currentConditions.windspeed + " km/h";
 		this._renderHouerSlot(response, unit);
 		this._renderForecast(response, unit);
 	}
