@@ -44,6 +44,17 @@ class UI {
 			this.btnFahrenheit.classList.remove('active');
 			this.btnCelsius.classList.add('active')
 			this.currentTemp.textContent = `${this._getClesuisTemp(this.currentTemp.textContent)}°`;
+			const mins = [...document.querySelectorAll('.min')];
+			const maxs = [...document.querySelectorAll('.max')];
+			const hoursTemps = [...document.querySelectorAll('.hour-temp')];
+			for (let i = 0; i < mins.length; i++) {
+				mins[i].textContent = `/${this._getClesuisTemp(mins[i].textContent.slice(1, mins[i].textContent.length))}°`;
+				maxs[i].textContent = `${this._getClesuisTemp(maxs[i].textContent)}°`;
+			}
+			for (let i = 0; i < hoursTemps.length; i++) {
+				hoursTemps[i].textContent = `${this._getClesuisTemp(hoursTemps[i].textContent)}°`;
+			}
+			this.feelslike.textContent = `${this._getClesuisTemp(this.feelslike.textContent)}°`;
 		})
 
 		this.btnFahrenheit.addEventListener('click', (e) => {
@@ -52,6 +63,17 @@ class UI {
 			this.btnCelsius.classList.remove('active');
 			this.btnFahrenheit.classList.add('active')
 			this.currentTemp.textContent = `${this._getFahrenheitTemp(this.currentTemp.textContent)}°`;
+			const mins = [...document.querySelectorAll('.min')];
+			const maxs = [...document.querySelectorAll('.max')];
+			const hoursTemps = [...document.querySelectorAll('.hour-temp')];
+			for (let i = 0; i < mins.length; i++) {
+				mins[i].textContent = `/${this._getFahrenheitTemp(mins[i].textContent.slice(1, mins[i].textContent.length))}°`;
+				maxs[i].textContent = `${this._getFahrenheitTemp(maxs[i].textContent)}°`;
+			}
+			for (let i = 0; i < hoursTemps.length; i++) {
+				hoursTemps[i].textContent = `${this._getFahrenheitTemp(hoursTemps[i].textContent)}°`;
+			}
+			this.feelslike.textContent = `${this._getFahrenheitTemp(this.feelslike.textContent)}°`;
 		})
 	}
 
