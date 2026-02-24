@@ -45,7 +45,7 @@ class UI{
 				return ;
 			this.btnFahrenheit.classList.remove('active');
 			this.btnCelsius.classList.add('active')
-			this.currentTemp.textContent = this._getClesuisTemp(this.currentTemp.textContent);
+			this.currentTemp.textContent = `${this._getClesuisTemp(this.currentTemp.textContent)}°`;
 		})
 
 		this.btnFahrenheit.addEventListener('click', (e)=>{
@@ -53,7 +53,7 @@ class UI{
 				return ;
 			this.btnCelsius.classList.remove('active');
 			this.btnFahrenheit.classList.add('active')
-			this.currentTemp.textContent = this._getFahrenheitTemp(this.currentTemp.textContent);
+			this.currentTemp.textContent = `${this._getFahrenheitTemp(this.currentTemp.textContent)}°`;
 		})
 	}
 
@@ -73,7 +73,7 @@ class UI{
 	render(response) {
 		this.city.textContent = response.address.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		this.desc.textContent = response.description;
-		this.currentTemp.textContent = this._getClesuisTemp(response.currentConditions.temp);
+		this.currentTemp.textContent = `${this._getClesuisTemp(response.currentConditions.temp)}°`;
 		this.iconCurrentTemp.src = `${this.urlIcon}${response.currentConditions.icon}.svg`;
 		this.feelslike.textContent = `${
 			this._getClesuisTemp(response.currentConditions.feelslike)
@@ -87,8 +87,21 @@ class UI{
 	_renderHouerSlot(response){
 		const hours = response.days[0].hours;
 		const hourSlot = [hours[6], hours[9], hours[12], hours[15], hours[18], hours[21]];
-		const hourSlotEl = [...document.querySelectorAll('.hour-slotr')];
+		const hourSlotEl = [...document.querySelectorAll('.hour-slot')];
 		const h = ['6:00 AM', '9:00 AM', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM']
+		const hs1 = new Date();
+		if (hs1.getHours() >= 6 && hs1.getHours() <= 8)
+			hourSlotEl[0].classList.add('current');
+		else if (hs1.getHours() >= 9 && hs1.getHours() <= 11)
+			hourSlotEl[1].classList.add('current');
+		else if (hs1.getHours() >= 12 && hs1.getHours() <= 14)
+			hourSlotEl[2].classList.add('current');
+		else if (hs1.getHours() >= 15 && hs1.getHours() <= 17)
+			hourSlotEl[3].classList.add('current');
+		else if (hs1.getHours() >= 18 && hs1.getHours() <= 20)
+			hourSlotEl[4].classList.add('current');
+		else
+			hourSlotEl[5].classList.add('current');
 		console.log(hourSlot);
 		for(let i = 0; i < hourSlot.length; i++) {
 			hourSlotEl[i].innerHTML = '';
